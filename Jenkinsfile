@@ -11,19 +11,19 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'sudo docker build -t neethunivu/my-docker-webapp:latest .'
+                sh 'docker build -t neethunivu/my-docker-webapp:latest .'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'sudo docker image inspect neethunivu/my-docker-webapp:latest'
+                sh 'docker image inspect neethunivu/my-docker-webapp:latest'
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                sh 'sudo docker push neethunivu/my-docker-webapp:latest'
+                sh 'docker push neethunivu/my-docker-webapp:latest'
             }
         }
     }
