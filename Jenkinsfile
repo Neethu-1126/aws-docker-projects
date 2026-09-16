@@ -36,5 +36,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    docker pull neethunivu/my-docker-webapp:latest
+                    docker rm -f jenkins-deployed-web || true
+                    docker run -d --name jenkins-deployed-web -p 8084:80 neethunivu/my-docker-webapp:latest
+                '''
+            }
+        }
     }
 }
